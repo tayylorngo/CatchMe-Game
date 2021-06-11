@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var targetArea: UIView!
     
     var score: Int = 0
-    var attempts: Int = 20
+    var attempts: Int = 50
     var newButtonX: CGFloat?
     var newButtonY: CGFloat?
     var newAreaX: CGFloat?
@@ -28,8 +28,13 @@ class ViewController: UIViewController {
             initLoc()
         }
         score = 0
-        attempts = 20
+        attempts = 50
         updateScore()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showOpeningMessage()
     }
 
     @IBAction func catchMeButtonTapped(_ sender: UIButton) {
@@ -130,6 +135,18 @@ class ViewController: UIViewController {
         return true
     }
     
+    func showOpeningMessage(){
+        let message =  """
+            Keep clicking on the button until it is fully inside the green target area.
+            You have 50 attempts.
+            Good Luck!
+            """
+        let alert = UIAlertController(title: "Welcome!", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {_ in
+        }))
+        present(alert, animated: true)
+    }
+    
     func winGame(){
         let alert = UIAlertController(title: "Victory!", message: "Your Score: \(score)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Play Again", style: .default, handler: {_ in
@@ -148,8 +165,11 @@ class ViewController: UIViewController {
     
     func playAgain(){
         initLoc()
+        while(checkIfInside()){
+            initLoc()
+        }
         score = 0
-        attempts = 20
+        attempts = 50
         updateScore()
     }
     
