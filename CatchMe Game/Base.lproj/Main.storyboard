@@ -22,16 +22,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BML-pn-lOT">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BML-pn-lOT">
                                 <rect key="frame" x="40" y="585" width="237" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Fob-0c-lCn"/>
+                                    <constraint firstAttribute="height" constant="250" id="h72-b1-1Jl"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQZ-vE-TJI">
-                                <rect key="frame" x="132" y="354" width="175" height="162"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQZ-vE-TJI">
+                                <rect key="frame" x="107" y="353.5" width="200" height="189"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="3XJ-u5-6yX"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="175" id="7ge-hf-Bkw"/>
                                     <constraint firstAttribute="width" constant="200" id="bhU-1A-RkV"/>
                                     <constraint firstAttribute="height" constant="189" id="fHG-ve-IWb"/>
                                 </constraints>

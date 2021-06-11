@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         sender.center.y = newButtonY!
         ViewController.score += 1
         updateScore()
+        checkIfInside()
     }
     
     func updateScore(){
@@ -81,7 +82,38 @@ class ViewController: UIViewController {
     }
     
     func checkIfInside(){
+        let targetAreaCenterX = targetArea.center.x
+        let targetAreaCenterY = targetArea.center.y
+        let targetAreaWidth = targetArea.bounds.width
+        let targetAreaHeight = targetArea.bounds.height
         
+        let buttonCenterX = gameButton.center.x
+        let buttonCenterY = gameButton.center.y
+        let buttonWidth = gameButton.bounds.width
+        let buttonHeight = gameButton.bounds.height
+        
+        let rightButtonBorder = buttonCenterX + (buttonWidth / 2.0)
+        let leftButtonBorder = buttonCenterX - (buttonWidth / 2.0)
+        let topButtonBorder = buttonCenterY - (buttonHeight / 2.0)
+        let bottomButtonBorder = buttonCenterY + (buttonHeight / 2.0)
+        
+        let rightAreaBorder = targetAreaCenterX + (targetAreaWidth / 2.0)
+        let leftAreaBorder = targetAreaCenterX - (targetAreaWidth / 2.0)
+        let topAreaBorder = targetAreaCenterY - (targetAreaHeight / 2.0)
+        let bottomAreaBorder = targetAreaCenterY + (targetAreaHeight / 2.0)
+        
+        if topButtonBorder < topAreaBorder {
+            return
+        }
+        if bottomButtonBorder > bottomAreaBorder {
+            return
+        }
+        if leftButtonBorder < leftAreaBorder {
+            return
+        }
+        if rightButtonBorder > rightAreaBorder {
+            return
+        }
     }
     
     override func viewDidLayoutSubviews() {
