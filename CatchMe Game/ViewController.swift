@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameButton: UIButton!
     @IBOutlet weak var targetArea: UIView!
     
-    static var score: Int = 0
+    var score: Int = 0
     var newButtonX: CGFloat?
     var newButtonY: CGFloat?
     var newAreaX: CGFloat?
@@ -22,7 +22,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initLoc()
-        ViewController.score = 0
+        while(checkIfInside()){
+            initLoc()
+        }
+        score = 0
         updateScore()
     }
 
@@ -43,13 +46,16 @@ class ViewController: UIViewController {
 
         sender.center.x = newButtonX!
         sender.center.y = newButtonY!
-        ViewController.score += 1
+        score += 1
         updateScore()
-        checkIfInside()
+        if checkIfInside(){
+            print("WINNER")
+            winGame()
+        }
     }
     
     func updateScore(){
-        scoreLabel.text = "Score: " + String(ViewController.score);
+        scoreLabel.text = "Score: " + String(score);
     }
     
     func initLoc(){
@@ -81,7 +87,7 @@ class ViewController: UIViewController {
         targetArea.center.y = newAreaY!
     }
     
-    func checkIfInside(){
+    func checkIfInside() -> Bool{
         let targetAreaCenterX = targetArea.center.x
         let targetAreaCenterY = targetArea.center.y
         let targetAreaWidth = targetArea.bounds.width
@@ -103,17 +109,32 @@ class ViewController: UIViewController {
         let bottomAreaBorder = targetAreaCenterY + (targetAreaHeight / 2.0)
         
         if topButtonBorder < topAreaBorder {
-            return
+            return false
         }
         if bottomButtonBorder > bottomAreaBorder {
-            return
+            return false
         }
         if leftButtonBorder < leftAreaBorder {
-            return
+            return false
         }
         if rightButtonBorder > rightAreaBorder {
-            return
+            return false
         }
+        return true
+    }
+    
+    func winGame(){
+        let alert = UIAlertController(title: "Game Over!", message: "Your Score: \(score)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Play Again", style: .default, handler: {_ in
+            self.playAgain()
+        }))
+        present(alert, animated: true)
+    }
+    
+    func playAgain(){
+        initLoc()
+        score = 0
+        updateScore()
     }
     
     override func viewDidLayoutSubviews() {
