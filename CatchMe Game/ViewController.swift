@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var gameButton: UIButton!
     @IBOutlet weak var targetArea: UIView!
     
     var score: Int = 0
+    var attempts: Int = 20
     var newButtonX: CGFloat?
     var newButtonY: CGFloat?
     var newAreaX: CGFloat?
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
             initLoc()
         }
         score = 0
+        attempts = 20
         updateScore()
     }
 
@@ -47,15 +50,19 @@ class ViewController: UIViewController {
         sender.center.x = newButtonX!
         sender.center.y = newButtonY!
         score += 1
+        attempts -= 1
         updateScore()
         if checkIfInside(){
-            print("WINNER")
             winGame()
+        }
+        if attempts == 0{
+            loseGame()
         }
     }
     
     func updateScore(){
-        scoreLabel.text = "Score: " + String(score);
+        scoreLabel.text = "Score: \(score)"
+        attemptsLabel.text = "Attempts: \(attempts)"
     }
     
     func initLoc(){
@@ -124,7 +131,15 @@ class ViewController: UIViewController {
     }
     
     func winGame(){
-        let alert = UIAlertController(title: "Game Over!", message: "Your Score: \(score)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Victory!", message: "Your Score: \(score)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Play Again", style: .default, handler: {_ in
+            self.playAgain()
+        }))
+        present(alert, animated: true)
+    }
+    
+    func loseGame(){
+        let alert = UIAlertController(title: "Defeat!", message: "Your Score: \(score)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Play Again", style: .default, handler: {_ in
             self.playAgain()
         }))
@@ -134,6 +149,7 @@ class ViewController: UIViewController {
     func playAgain(){
         initLoc()
         score = 0
+        attempts = 20
         updateScore()
     }
     

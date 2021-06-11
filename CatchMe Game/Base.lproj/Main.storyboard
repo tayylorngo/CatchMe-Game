@@ -16,6 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attempts: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNL-2S-VW8">
+                                <rect key="frame" x="168" y="106" width="78.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Irb-jG-AAw">
                                 <rect key="frame" x="180" y="69" width="54" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,15 +55,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jNL-2S-VW8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8NT-E5-ghX"/>
                             <constraint firstItem="SQZ-vE-TJI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9q2-nL-Nvr"/>
                             <constraint firstItem="Irb-jG-AAw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GcR-5Q-mwQ"/>
                             <constraint firstItem="SQZ-vE-TJI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NZl-8p-FFx"/>
                             <constraint firstItem="SQZ-vE-TJI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OdZ-t1-5vA"/>
                             <constraint firstItem="SQZ-vE-TJI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lUz-f5-O45"/>
                             <constraint firstItem="Irb-jG-AAw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="pIc-81-V0V"/>
+                            <constraint firstItem="jNL-2S-VW8" firstAttribute="top" secondItem="Irb-jG-AAw" secondAttribute="bottom" constant="16" id="tu0-TY-LuE"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="attemptsLabel" destination="jNL-2S-VW8" id="coc-Ds-4wh"/>
                         <outlet property="gameButton" destination="SQZ-vE-TJI" id="C2I-9o-9B5"/>
                         <outlet property="scoreLabel" destination="Irb-jG-AAw" id="xnc-0j-ubJ"/>
                         <outlet property="targetArea" destination="BML-pn-lOT" id="1Lh-1w-tca"/>
